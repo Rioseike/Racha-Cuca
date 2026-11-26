@@ -71,3 +71,54 @@ void Tabuleiro::imprimir() const {
         cout << endl;
     }
 }
+
+// vai conferir se mover uma peça nao deixará ela de fora da matriz
+bool Tabuleiro::podeMover(char direcao) const {
+    if (direcao == 'C') {
+        return linhaVazio > 0;
+    }
+    if (direcao == 'B') {
+        return linhaVazio < n - 1;
+    }
+    if (direcao == 'E') {
+        return colunaVazio > 0;
+    }
+    if (direcao == 'D') {
+        return colunaVazio < n - 1;
+    }
+    return false;
+}
+
+//Essa função vai mover o espaço vazio
+bool Tabuleiro::mover(char direcao) {
+    // conferindo com a outra função se é possível mover
+    if (!podeMover(direcao)) {
+        return false;
+    }
+
+    int novaLinha = linhaVazio;
+    int novaColuna = colunaVazio;
+
+    // mexe a linha ou coluna respectivamnete com o movimento
+    if (direcao == 'C') {
+        novaLinha--;
+    }
+    if (direcao == 'B') {
+        novaLinha++;
+    }
+    if (direcao == 'E') {
+        novaColuna--;
+    }
+    if (direcao == 'D') {
+        novaColuna++;
+    }
+
+    //Responsável por trocar os valores de posição
+    casas[linhaVazio][colunaVazio] = casas[novaLinha][novaColuna];
+    casas[novaLinha][novaColuna] = 0;
+
+    linhaVazio = novaLinha;
+    colunaVazio = novaColuna;
+
+    return true;
+}

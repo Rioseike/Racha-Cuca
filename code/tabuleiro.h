@@ -16,6 +16,8 @@ public:
     bool estaResolvido() const;
     void imprimir() const;
 
+    bool podeMover(char direcao) const;
+    bool mover(char direcao);
 
 private:
     int n;
