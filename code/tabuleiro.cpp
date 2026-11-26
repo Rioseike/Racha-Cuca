@@ -122,3 +122,32 @@ bool Tabuleiro::mover(char direcao) {
 
     return true;
 }
+
+
+void Tabuleiro::embaralhar(int passos, int semente) {
+    //escolhe a seed dos numeros sortidos
+    srand(semente);
+
+    // distribui os numeros, limitados ao resto da divisão
+    for (int i = 0; i < passos; i++) {
+        int sorteio = rand() % 4;
+        char direcao;
+
+        if (sorteio == 0) {
+            direcao = 'C';
+        }
+        if (sorteio == 1) {
+            direcao = 'B';
+        }
+        if (sorteio == 2) {
+            direcao = 'E';
+        }
+        if (sorteio == 3) {
+            direcao = 'D';
+        }
+
+        mover(direcao);
+    }
+
+    
+}

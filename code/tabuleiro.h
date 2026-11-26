@@ -19,6 +19,8 @@ public:
     bool podeMover(char direcao) const;
     bool mover(char direcao);
 
+    void embaralhar(int passos, int semente);
+
 private:
     int n;
     vector<vector<int>> casas;
