@@ -127,27 +127,48 @@ bool Tabuleiro::mover(char direcao) {
 void Tabuleiro::embaralhar(int passos, int semente) {
     //escolhe a seed dos numeros sortidos
     srand(semente);
+    char ultima = ' ';
 
     // distribui os numeros, limitados ao resto da divisão
-    for (int i = 0; i < passos; i++) {
-        int sorteio = rand() % 4;
-        char direcao;
+        for (int i = 0; i < passos; i++) {
+        bool moveu = false;
 
-        if (sorteio == 0) {
-            direcao = 'C';
-        }
-        if (sorteio == 1) {
-            direcao = 'B';
-        }
-        if (sorteio == 2) {
-            direcao = 'E';
-        }
-        if (sorteio == 3) {
-            direcao = 'D';
-        }
+        while (!moveu) {
+            int sorteio = rand() % 4;
+            char direcao = 'C';
 
-        mover(direcao);
+            if (sorteio == 1) {
+                direcao = 'B';
+            }
+            if (sorteio == 2) {
+                direcao = 'E';
+            }
+            if (sorteio == 3) {
+                direcao = 'D';
+            }
+
+            //se tiver o movimento oposto ao anterior, ele não irá fazer, garantindo melhor embaralhamento
+            //guardando só quando 'moveu' é true, 'ultima' sempre reflete o que realmente aconteceu no tabuleiro.
+            char oposta = ' ';
+            if (ultima == 'C') {
+                oposta = 'B';
+            }
+            if (ultima == 'B') {
+                oposta = 'C';
+            }
+            if (ultima == 'E') {
+                oposta = 'D';
+            }
+            if (ultima == 'D') {
+                oposta = 'E';
+            }
+            // aqui inverte a direção
+            if (direcao != oposta) {
+                moveu = mover(direcao);
+            if (moveu) {
+                ultima = direcao;
+                }
+            }
+        }
     }
-
-    
 }
