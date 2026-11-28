@@ -172,3 +172,15 @@ void Tabuleiro::embaralhar(int passos, int semente) {
         }
     }
 }
+
+//converte o tabuleiro em um texto
+string Tabuleiro::paraTexto() const {
+    string texto = "";
+    //aqui percorre a matriz e coloca em uma string separando os numero por virgula
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            texto = texto + to_string(casas[i][j]) + ",";
+        }
+    }
+    return texto;
+}

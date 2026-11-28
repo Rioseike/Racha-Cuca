@@ -1,7 +1,8 @@
 #ifndef TABULEIRO_H
 #define TABULEIRO_H
 
-#include <vector>
+#include <bits/stdc++.h>
+#include <string>
 using namespace std;
 
 class Tabuleiro {
@@ -20,6 +21,9 @@ public:
     bool mover(char direcao);
 
     void embaralhar(int passos, int semente);
+
+    string paraTexto() const;
+
 
 private:
     int n;
